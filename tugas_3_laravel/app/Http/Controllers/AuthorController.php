@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use App\Models\Author;
@@ -8,30 +9,69 @@ class AuthorController extends Controller
 {
     public function index()
     {
-        $authors = Author::with('books')->get();
+        $authors = Author::all();
         return response()->json([
-            'success' => true,
-            'message' => 'List semua penulis',
+            'status' => 'success',
             'data' => $authors
         ]);
     }
 
     public function show($id)
     {
-        $author = Author::with('books')->find($id);
-
+        $author = Author::find($id);
         if (!$author) {
             return response()->json([
-                'success' => false,
-                'message' => 'Penulis tidak ditemukan'
+                'status' => 'error',
+                'message' => 'Author not found'
             ], 404);
         }
 
         return response()->json([
-            'success' => true,
-            'message' => 'Detail penulis',
+            'status' => 'success',
             'data' => $author
         ]);
     }
-}
 
+    public function store(Request $request)
+    {
+        $author = Author::create($request->all());
+        return response()->json([
+            'status' => 'success',
+            'data' => $author
+        ], 201);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $author = Author::find($id);
+        if (!$author) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Author not found'
+            ], 404);
+        }
+
+        $author->update($request->all());
+        return response()->json([
+            'status' => 'success',
+            'data' => $author
+        ]);
+    }
+
+    public function destroy($id)
+    {
+        $author = Author::find($id);
+        if (!$author) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Author not found'
+            ], 404);
+        }
+
+        $author->delete();
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Author deleted successfully'
+        ]);
+    }
+}
