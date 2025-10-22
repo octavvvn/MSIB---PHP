@@ -110,12 +110,12 @@
         @foreach($books as $book)
             <div class="book-card">
                 <div class="book-cover">
-                    {{ Str::limit($book->title, 15) }}
+                    {{ \Illuminate\Support\Str::limit($book->title, 15) }}
                 </div>
                 <div class="book-info">
                     <h2>{{ $book->title }}</h2>
-                    <p><b>Genre:</b> {{ $book->genre }}</p>
-                    <p><b>Author:</b> {{ $book->author->name }}</p>
+                    <p><b>Genre:</b> {{ $book->genre->name ?? 'Unknown' }}</p>
+                    <p><b>Author:</b> {{ $book->author->name ?? 'Unknown' }}</p>
                 </div>
             </div>
         @endforeach

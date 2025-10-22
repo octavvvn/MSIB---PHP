@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Authors</title>
@@ -74,6 +75,7 @@
         }
     </style>
 </head>
+
 <body>
     <h1>Authors</h1>
     <div class="grid-container">
@@ -86,4 +88,5 @@
     </div>
     <a href="/" class="btn">Back to Home</a>
 </body>
+
 </html>

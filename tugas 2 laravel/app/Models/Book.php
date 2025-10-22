@@ -9,9 +9,25 @@ class Book extends Model
 {
     use HasFactory;
 
-    // kalau kamu pakai relasi ke author, bisa tambahkan:
+    protected $table = 'books';
+
+    protected $fillable = [
+        'title',
+        'description',
+        'price',
+        'stock',
+        'cover_photo',
+        'genre_id',
+        'author_id',
+    ];
+
     public function author()
     {
-        return $this->belongsTo(Author::class);
+        return $this->belongsTo(Author::class, 'author_id');
+    }
+
+    public function genre()
+    {
+        return $this->belongsTo(Genre::class, 'genre_id');
     }
 }

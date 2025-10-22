@@ -3,18 +3,16 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
+use App\Models\Author;
 
 class AuthorSeeder extends Seeder
 {
     public function run(): void
     {
-        DB::table('authors')->insert([
-            ['name' => 'J.K. Rowling', 'bio' => 'Author of the Harry Potter series'],
-            ['name' => 'George R.R. Martin', 'bio' => 'Author of A Song of Ice and Fire'],
-            ['name' => 'J.R.R. Tolkien', 'bio' => 'Author of The Lord of the Rings'],
-            ['name' => 'Suzanne Collins', 'bio' => 'Author of The Hunger Games'],
-            ['name' => 'Stephen King', 'bio' => 'Author of numerous horror novels'],
-        ]);
+        Author::create(['name' => 'J.K. Rowling', 'photo' => 'jk_rowling.jpg', 'bio' => 'British author best known for writing the Harry Potter series.']);
+        Author::create(['name' => 'George R.R. Martin', 'photo' => 'george_rr_martin.jpg', 'bio' => 'American novelist and creator of A Song of Ice and Fire.']);
+        Author::create(['name' => 'Agatha Christie', 'photo' => 'agatha_christie.jpg', 'bio' => 'Famous mystery writer known for Hercule Poirot and Miss Marple.']);
+        Author::create(['name' => 'H.P. Lovecraft', 'photo' => 'hp_lovecraft.jpg', 'bio' => 'Pioneer of cosmic horror and weird fiction.']);
+        Author::create(['name' => 'Stephen Hawking', 'photo' => 'stephen_hawking.jpg', 'bio' => 'Renowned physicist and author of A Brief History of Time.']);
     }
 }

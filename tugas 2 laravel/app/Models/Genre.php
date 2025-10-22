@@ -1,16 +1,23 @@
 <?php
+
 namespace App\Models;
 
-class Genre
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Genre extends Model
 {
-    public static function all()
+    use HasFactory;
+
+    protected $table = 'genres';
+
+    protected $fillable = [
+        'name',
+        'description',
+    ];
+
+    public function books()
     {
-        return [
-            ["id" => 1, "name" => "Fantasy"],
-            ["id" => 2, "name" => "Science Fiction"],
-            ["id" => 3, "name" => "Mystery"],
-            ["id" => 4, "name" => "Romance"],
-            ["id" => 5, "name" => "Horror"],
-        ];
+        return $this->hasMany(Book::class, 'genre_id');
     }
 }

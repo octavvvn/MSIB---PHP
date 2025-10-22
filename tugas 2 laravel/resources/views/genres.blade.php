@@ -20,7 +20,7 @@
             color: #ff66b2;
             margin-bottom: 30px;
             font-size: 32px;
-            font-weight: 700;
+            font-weight: 700;A
         }
 
         .grid-container {
