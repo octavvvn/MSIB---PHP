@@ -7,28 +7,30 @@ use Illuminate\Http\Request;
 
 class GenreController extends Controller
 {
+    //READ ALL
     public function index()
     {
         $genres = Genre::all();
-
         return response()->json([
-            'success' => true,
-            'message' => 'List of Genres',
+            'status' => 'success',
             'data' => $genres
         ]);
     }
+
+    //CREATE
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required|string'
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string'
         ]);
 
-        $genre = Genre::create($request->only(['name']));
+        $genre = Genre::create($validated);
 
         return response()->json([
-            'success' => true,
+            'status' => 'success',
             'message' => 'Genre created successfully',
             'data' => $genre
-        ]);
+        ], 201);
     }
 }

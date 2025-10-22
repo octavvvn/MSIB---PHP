@@ -7,11 +7,14 @@ use App\Http\Controllers\GenreController;
 
 Route::get('/books', [BookController::class, 'index']);
 Route::get('/books/{id}', [BookController::class, 'show']);
+Route::post('/books', [BookController::class, 'store']);
+Route::put('/books/{id}', [BookController::class, 'update']);
+Route::delete('/books/{id}', [BookController::class, 'destroy']);
 
-Route::get('/authors', [AuthorController::class, 'index']);
-Route::get('/authors/{id}', [AuthorController::class, 'show']);
-Route::post('/authors', [AuthorController::class, 'store']); 
 
 Route::get('/genres', [GenreController::class, 'index']);
-Route::get('/genres/{id}', [GenreController::class, 'show']);
-Route::post('/genres', [GenreController::class, 'store']); 
+Route::post('/genres', [GenreController::class, 'store']);
+
+Route::get('/authors', [AuthorController::class, 'index']);
+Route::post('/authors', [AuthorController::class, 'store']);
+
